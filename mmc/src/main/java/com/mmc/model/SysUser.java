@@ -67,8 +67,16 @@ public class SysUser  implements Serializable{
 		private String salt;
 		
 	//columns END 数据库字段结束
-	
-	
+
+	public SysUser(){}
+
+	public SysUser (Long id, String loginName, String nameZh,String icon,String email) {
+		this.id = id;
+		this.loginName = loginName;
+		this.nameZh = nameZh;
+		this.icon=icon;
+		this.email = email;
+	}
 
 	//get and set
 	public void setId(Long id) {

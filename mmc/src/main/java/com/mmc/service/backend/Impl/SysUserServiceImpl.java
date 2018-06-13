@@ -1,6 +1,7 @@
 package com.mmc.service.backend.Impl;
 
 import com.mmc.dao.backend.SysUserMapper;
+import com.mmc.model.dto.SysUserDto;
 import com.mmc.model.vo.SysUserVo;
 import com.mmc.service.backend.SysUserService;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,15 @@ public class SysUserServiceImpl implements SysUserService{
     @Override
     public SysUserVo selectByPrimaryKey(Long id) {
         return sysUserMapper.selectByPrimaryKey(id);
+    }
+
+    /**
+     * 根据登录账号，查询用户
+     * @param dto
+     * @return
+     */
+    @Override
+    public SysUserVo getSysUserByLoginName(SysUserDto dto) {
+        return sysUserMapper.getSysUserByLoginName(dto);
     }
 }

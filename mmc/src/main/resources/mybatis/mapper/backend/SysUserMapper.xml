@@ -218,5 +218,13 @@
         salt = #{salt} 
     where id = #{id }  
   </update>
-	
+
+  <!--根据用户名，查询用户-->
+  <select id="getSysUserByLoginName" resultMap="BaseResultMap" parameterType="com.mmc.model.dto.SysUserDto" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where login_name = #{loginName}
+  </select>
+
 </mapper>

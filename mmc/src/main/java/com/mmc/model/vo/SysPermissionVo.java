@@ -11,9 +11,18 @@ import com.mmc.model.SysPermission;
  * table: sys_permission
  */
 public class SysPermissionVo  extends SysPermission{
-	
-	
-	
+    /**
+     * 统计数量
+     */
+    private Integer dataCount;
+
+    public Integer getDataCount() {
+        return dataCount;
+    }
+
+    public void setDataCount(Integer dataCount) {
+        this.dataCount = dataCount;
+    }
 }
 
 	

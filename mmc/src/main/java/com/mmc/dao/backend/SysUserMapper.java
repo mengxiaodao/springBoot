@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mmc.model.dto.SysUserDto;
 import com.mmc.model.vo.SysUserVo;
+import org.springframework.stereotype.Component;
 
 /**
  * SysUser
@@ -11,6 +12,7 @@ import com.mmc.model.vo.SysUserVo;
  * @version  2018-06-12 16:21:57
  * table: sys_user
  */
+@Component
 public interface SysUserMapper {
 	
 	int deleteByPrimaryKey(Long id);
@@ -24,6 +26,13 @@ public interface SysUserMapper {
     int updateByPrimaryKeySelective(SysUserDto record);
 
     int updateByPrimaryKey(SysUserDto record);
+
+    /**
+     * 根据登录账号，查询用户
+     * @param record
+     * @return
+     */
+    SysUserVo getSysUserByLoginName(SysUserDto record);
 }
 
 

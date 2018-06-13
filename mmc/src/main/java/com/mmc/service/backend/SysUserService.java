@@ -1,5 +1,6 @@
 package com.mmc.service.backend;
 
+import com.mmc.model.dto.SysUserDto;
 import com.mmc.model.vo.SysUserVo;
 
 /**
@@ -12,4 +13,11 @@ public interface SysUserService {
      * @return
      */
     SysUserVo selectByPrimaryKey(Long id);
+
+    /**
+     * 根据登录账号，查询用户
+     * @param record
+     * @return
+     */
+    SysUserVo getSysUserByLoginName(SysUserDto record);
 }
