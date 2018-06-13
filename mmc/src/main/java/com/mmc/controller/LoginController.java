@@ -22,7 +22,7 @@ import java.io.IOException;
 @Controller
 @RequestMapping("login")
 public class LoginController {
-    @Value("${com.chengang.name}")
+    @Value("${com.mc.name}")
     private String name;
     /**
      * 验证码

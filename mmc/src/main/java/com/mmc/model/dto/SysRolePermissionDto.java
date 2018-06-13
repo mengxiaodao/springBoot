@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * SysRolePermission
- * @author  chengang
+ * @author  mc
  * @version  2018-06-12 16:22:27
  * table: sys_role_permission
  */
