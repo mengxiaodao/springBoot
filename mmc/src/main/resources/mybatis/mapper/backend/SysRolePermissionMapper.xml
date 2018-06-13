@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmc.dao.backend.SysRolePermissionMapper">
+	<resultMap id="BaseResultMap" type="com.mmc.model.vo.SysRolePermissionVo">
+		
+		<id column="id" property="id" jdbcType="BIGINT"/>
+		<result column="role_id" property="roleId"  jdbcType="BIGINT"/>
+		<result column="permission_id" property="permissionId"  jdbcType="BIGINT"/>
+		<result column="is_deleted" property="isDeleted"  jdbcType="TINYINT"/>
+		<result column="create_time" property="createTime"  jdbcType="TIMESTAMP"/>
+		<result column="update_time" property="updateTime"  jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<sql id="Base_Column_List" >
+	 id,    role_id,    permission_id,    is_deleted,    create_time,     update_time  
+	</sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role_permission
+    where id = #{id}  
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_role_permission
+    where id =#{id}  
+  </delete>
+  <insert id="insert" parameterType="com.mmc.model.dto.SysRolePermissionDto" >
+    insert into sys_role_permission (  role_id,    permission_id,    is_deleted,    create_time,     update_time )
+    values (#{roleId},  #{permissionId},  #{isDeleted},  #{createTime},    #{updateTime}  )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmc.model.dto.SysRolePermissionDto" >
+    insert into sys_role_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="permissionId != null" >
+        permission_id,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId} ,
+      </if>
+      <if test="permissionId != null" >
+        #{permissionId} ,
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted} ,
+      </if>
+      <if test="createTime != null" >
+        #{createTime} ,
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime} ,
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmc.model.dto.SysRolePermissionDto" >
+    update sys_role_permission
+    <set >
+      <if test="roleId != null" >
+        role_id = #{roleId} ,
+      </if>
+      <if test="permissionId != null" >
+        permission_id = #{permissionId} ,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted} ,
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime} ,
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime} ,
+      </if>
+    </set>
+    where id = #{id }  
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmc.model.dto.SysRolePermissionDto" >
+    update sys_role_permission
+    set 
+        role_id = #{roleId} ,
+        permission_id = #{permissionId} ,
+        is_deleted = #{isDeleted} ,
+        create_time = #{createTime} ,
+        update_time = #{updateTime} 
+    where id = #{id }  
+  </update>
+	
+</mapper>

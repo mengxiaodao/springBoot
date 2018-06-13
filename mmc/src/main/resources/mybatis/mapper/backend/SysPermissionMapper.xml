@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmc.dao.backend.SysPermissionMapper">
+	<resultMap id="BaseResultMap" type="com.mmc.model.vo.SysPermissionVo">
+		
+		<id column="id" property="id" jdbcType="BIGINT"/>
+		<result column="pid" property="pid"  jdbcType="BIGINT"/>
+		<result column="name" property="name"  jdbcType="VARCHAR"/>
+		<result column="url" property="url"  jdbcType="VARCHAR"/>
+		<result column="menu_key" property="menuKey"  jdbcType="VARCHAR"/>
+		<result column="permission" property="permission"  jdbcType="VARCHAR"/>
+		<result column="type" property="type"  jdbcType="TINYINT"/>
+		<result column="is_visible" property="isVisible"  jdbcType="TINYINT"/>
+		<result column="is_leaf" property="isLeaf"  jdbcType="TINYINT"/>
+		<result column="sort" property="sort"  jdbcType="INTEGER"/>
+		<result column="icon" property="icon"  jdbcType="VARCHAR"/>
+		<result column="description" property="description"  jdbcType="VARCHAR"/>
+		<result column="status" property="status"  jdbcType="TINYINT"/>
+		<result column="is_deleted" property="isDeleted"  jdbcType="TINYINT"/>
+		<result column="create_by" property="createBy"  jdbcType="BIGINT"/>
+		<result column="update_by" property="updateBy"  jdbcType="BIGINT"/>
+		<result column="create_time" property="createTime"  jdbcType="TIMESTAMP"/>
+		<result column="update_time" property="updateTime"  jdbcType="TIMESTAMP"/>
+		<result column="en_name" property="enName"  jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="Base_Column_List" >
+	 id,    pid,    name,    url,    menu_key,    permission,    type,    is_visible,    is_leaf,    sort,    icon,    description,    status,    is_deleted,    create_by,    update_by,    create_time,    update_time,     en_name  
+	</sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_permission
+    where id = #{id}  
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_permission
+    where id =#{id}  
+  </delete>
+  <insert id="insert" parameterType="com.mmc.model.dto.SysPermissionDto" >
+    insert into sys_permission (  pid,    name,    url,    menu_key,    permission,    type,    is_visible,    is_leaf,    sort,    icon,    description,    status,    is_deleted,    create_by,    update_by,    create_time,    update_time,     en_name )
+    values (#{pid},  #{name},  #{url},  #{menuKey},  #{permission},  #{type},  #{isVisible},  #{isLeaf},  #{sort},  #{icon},  #{description},  #{status},  #{isDeleted},  #{createBy},  #{updateBy},  #{createTime},  #{updateTime},    #{enName}  )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmc.model.dto.SysPermissionDto" >
+    insert into sys_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="menuKey != null" >
+        menu_key,
+      </if>
+      <if test="permission != null" >
+        permission,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="isVisible != null" >
+        is_visible,
+      </if>
+      <if test="isLeaf != null" >
+        is_leaf,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="enName != null" >
+        en_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        #{pid} ,
+      </if>
+      <if test="name != null" >
+        #{name} ,
+      </if>
+      <if test="url != null" >
+        #{url} ,
+      </if>
+      <if test="menuKey != null" >
+        #{menuKey} ,
+      </if>
+      <if test="permission != null" >
+        #{permission} ,
+      </if>
+      <if test="type != null" >
+        #{type} ,
+      </if>
+      <if test="isVisible != null" >
+        #{isVisible} ,
+      </if>
+      <if test="isLeaf != null" >
+        #{isLeaf} ,
+      </if>
+      <if test="sort != null" >
+        #{sort} ,
+      </if>
+      <if test="icon != null" >
+        #{icon} ,
+      </if>
+      <if test="description != null" >
+        #{description} ,
+      </if>
+      <if test="status != null" >
+        #{status} ,
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted} ,
+      </if>
+      <if test="createBy != null" >
+        #{createBy} ,
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy} ,
+      </if>
+      <if test="createTime != null" >
+        #{createTime} ,
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime} ,
+      </if>
+      <if test="enName != null" >
+        #{enName} ,
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmc.model.dto.SysPermissionDto" >
+    update sys_permission
+    <set >
+      <if test="pid != null" >
+        pid = #{pid} ,
+      </if>
+      <if test="name != null" >
+        name = #{name} ,
+      </if>
+      <if test="url != null" >
+        url = #{url} ,
+      </if>
+      <if test="menuKey != null" >
+        menu_key = #{menuKey} ,
+      </if>
+      <if test="permission != null" >
+        permission = #{permission} ,
+      </if>
+      <if test="type != null" >
+        type = #{type} ,
+      </if>
+      <if test="isVisible != null" >
+        is_visible = #{isVisible} ,
+      </if>
+      <if test="isLeaf != null" >
+        is_leaf = #{isLeaf} ,
+      </if>
+      <if test="sort != null" >
+        sort = #{sort} ,
+      </if>
+      <if test="icon != null" >
+        icon = #{icon} ,
+      </if>
+      <if test="description != null" >
+        description = #{description} ,
+      </if>
+      <if test="status != null" >
+        status = #{status} ,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted} ,
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy} ,
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy} ,
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime} ,
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime} ,
+      </if>
+      <if test="enName != null" >
+        en_name = #{enName} ,
+      </if>
+    </set>
+    where id = #{id }  
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmc.model.dto.SysPermissionDto" >
+    update sys_permission
+    set 
+        pid = #{pid} ,
+        name = #{name} ,
+        url = #{url} ,
+        menu_key = #{menuKey} ,
+        permission = #{permission} ,
+        type = #{type} ,
+        is_visible = #{isVisible} ,
+        is_leaf = #{isLeaf} ,
+        sort = #{sort} ,
+        icon = #{icon} ,
+        description = #{description} ,
+        status = #{status} ,
+        is_deleted = #{isDeleted} ,
+        create_by = #{createBy} ,
+        update_by = #{updateBy} ,
+        create_time = #{createTime} ,
+        update_time = #{updateTime} ,
+        en_name = #{enName} 
+    where id = #{id }  
+  </update>
+	
+</mapper>
