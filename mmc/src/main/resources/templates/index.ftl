@@ -17,41 +17,38 @@
     <!-- 网页作者 -->
     <meta name="author" content="CIC"/>
     <link rel="icon" href="#">
-    <link rel="stylesheet" href="${basePath}/static/plugins/layui/${language}/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/static/layui/css/layui.css" media="all" />
     <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
-    <link rel="stylesheet" href="${basePath}/static/css/main.css" media="all" />
+    <link rel="stylesheet" href="/static/css/main.css" media="all" />
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
 </head>
 <body class="main_body">
-<#import "spring.ftl" as spring/>
 <div class="layui-layout layui-layout-admin">
     <!-- 顶部 -->
     <div class="layui-header header">
         <div class="layui-main">
-            <a href="#" class="logo" ><@spring.message 'CICOperatingSystem' /></a>
+            <a href="#" class="logo" >layUI运营后台</a>
             <!-- 显示/隐藏菜单 -->
             <a href="javascript:" class="iconfont hideMenu icon-menu1"></a>
 
             <!-- 顶部右侧菜单 -->
             <ul class="layui-nav top_menu">
                 <li class="layui-nav-item showNotice" id="showNotice" pc>
-                    <a href="javascript:"><i class="iconfont icon-gonggao"></i><cite><@spring.message 'SystemAnnouncement' /></cite></a>
+                    <a href="javascript:"><i class="iconfont icon-gonggao"></i><cite>系统公告</cite></a>
                 </li>
             <#--<li class="layui-nav-item lockcms" pc>-->
             <#--<a href="javascript:"><i class="iconfont icon-lock1"></i><cite>锁屏</cite></a>-->
             <#--</li>-->
                 <li class="layui-nav-item" pc>
                     <a href="javascript:">
-                        <img src="<#if currentUser.icon?? && currentUser.icon!=''>${currentUser.icon}<#else>${basePath}/static/images/face.jpg</#if>" class="layui-circle" width="35" height="35">
+                        <img src="<#if currentUser.icon?? && currentUser.icon!=''>${currentUser.icon}<#else>/static/images/face.jpg</#if>" class="layui-circle" width="35" height="35">
                         <cite><#if currentUser.loginName?? && currentUser.loginName!=''>${currentUser.loginName}<#else>${currentUser.nameZh}</#if></cite>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:" data-url="${basePath}/sysUser/userInfo"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite><@spring.message 'PersonalData' /></cite></a></dd>
-                    <@shiro.hasPermission name="user:changePassword">
-                        <dd><a href="javascript:" data-url="${basePath}/sysUser/changePassword"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite><@spring.message 'ChangePassword' /></cite></a></dd>
-                    </@shiro.hasPermission>
-                        <dd><a href="javascript:" class="changeSkin"><i class="iconfont icon-huanfu"></i><cite><@spring.message 'ChangesSkin' /></cite></a></dd>
-                        <dd><a href="${basePath}/login/logout" class="signOut"><i class="iconfont icon-loginout"></i><cite><@spring.message 'Exit' /></cite></a></dd>
+                        <dd><a href="javascript:" data-url="/sysUser/userInfo"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite>个人资料</cite></a></dd>
+                        <dd><a href="javascript:" data-url="/sysUser/changePassword"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>修改密码</cite></a></dd>
+                        <dd><a href="javascript:" class="changeSkin"><i class="iconfont icon-huanfu"></i><cite>修改皮肤</cite></a></dd>
+                        <dd><a href="/login/logout" class="signOut"><i class="iconfont icon-loginout"></i><cite>退出</cite></a></dd>
                     </dl>
                 </li>
             </ul>
@@ -61,8 +58,8 @@
     <!-- 左侧导航 -->
     <div class="layui-side layui-bg-black">
         <div class="user-photo">
-            <a class="img" title="<@spring.message 'MyImage' />" ><img src="<#if currentUser.icon?? && currentUser.icon!=''>${currentUser.icon}<#else>${basePath}/static/images/face.jpg</#if>"></a>
-            <p><@spring.message 'Hello' />!<span class="userName"><#if currentUser.loginName?? && currentUser.loginName!=''>${currentUser.loginName}<#else>${currentUser.nameZh}</#if></span>,<@spring.message 'WelcomeToLogin' /></p>
+            <a class="img" title="我的图像" ><img src="<#if currentUser.icon?? && currentUser.icon!=''>${currentUser.icon}<#else>/static/images/face.jpg</#if>"></a>
+            <p>你好!<span class="userName"><#if currentUser.loginName?? && currentUser.loginName!=''>${currentUser.loginName}<#else>${currentUser.nameZh}</#if></span>,欢迎登录</p>
         </div>
         <div class="navBar layui-side-scroll"></div>
     </div>
@@ -71,22 +68,22 @@
     <div class="layui-body layui-form">
         <div class="layui-tab marg0" lay-filter="bodyTab" id="top_tabs_box">
             <ul class="layui-tab-title top_tab" id="top_tabs">
-                <li class="layui-this" lay-id=""><i class="iconfont icon-computer"></i> <cite><@spring.message 'BackgroundPage' /></cite></li>
+                <li class="layui-this" lay-id=""><i class="iconfont icon-computer"></i> <cite>后台首页</cite></li>
             </ul>
             <ul class="layui-nav closeBox">
                 <li class="layui-nav-item">
-                    <a href="javascript:"><i class="iconfont icon-caozuo"></i><@spring.message 'PageOperation' /></a>
+                    <a href="javascript:"><i class="iconfont icon-caozuo"></i>页面操作</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:" class="refresh refreshThis"><i class="layui-icon">&#x1002;</i> <@spring.message 'RefreshCurrent' /></a></dd>
-                        <dd><a href="javascript:" class="closePageOther"><i class="iconfont icon-prohibit"></i> <@spring.message 'CloseOther' /></a></dd>
-                        <dd><a href="javascript:" class="closePageAll"><i class="iconfont icon-guanbi"></i> <@spring.message 'CloseAll' /></a></dd>
+                        <dd><a href="javascript:" class="refresh refreshThis"><i class="layui-icon">&#x1002;</i>刷新当前</a></dd>
+                        <dd><a href="javascript:" class="closePageOther"><i class="iconfont icon-prohibit"></i>关闭其他</a></dd>
+                        <dd><a href="javascript:" class="closePageAll"><i class="iconfont icon-guanbi"></i>关闭全部</a></dd>
                     </dl>
                 </li>
             </ul>
 
             <div class="layui-tab-content clildFrame">
                 <div class="layui-tab-item layui-show">
-                    <iframe src="${basePath}/main"></iframe>
+                    <iframe src="/main"></iframe>
                 </div>
             </div>
         </div>
@@ -106,9 +103,8 @@
 <script>
     var baseUrl = "${basePath}";
 </script>
-<script type="text/javascript" src="${basePath}/static/js/message/<@spring.message "message"/>"></script>
-<script type="text/javascript" src="${basePath}/static/plugins/layui/${language}/layui.js"></script>
-<script type="text/javascript" src="${basePath}/static/js/leftNav.js?v=2.0"></script>
-<script type="text/javascript" src="${basePath}/static/js/index.js?t=3.0"></script>
+<script type="text/javascript" src="/static/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/leftNav.js?v=2.0"></script>
+<script type="text/javascript" src="/static/js/index.js?t=3.0"></script>
 </body>
 </html>
