@@ -264,5 +264,12 @@
     ORDER BY
     sp.sort DESC
   </select>
-
+  <!--查询所有未删除权限菜单-->
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.mmc.model.dto.SysPermissionDto">
+    select
+    <include refid="Base_Column_List" />
+    from sys_permission
+    where is_deleted = 0
+    order by sort
+  </select>
 </mapper>

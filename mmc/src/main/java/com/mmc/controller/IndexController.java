@@ -2,11 +2,14 @@ package com.mmc.controller;
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.mmc.model.SysUser;
+import com.mmc.model.dto.SysPermissionDto;
 import com.mmc.model.vo.SysPermissionVo;
+import com.mmc.service.backend.SysPermissionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -14,19 +17,23 @@ import java.util.List;
  */
 @Controller
 public class IndexController extends BaseController{
-
+    @Resource
+    private SysPermissionService sysPermissionService;
     @RequestMapping("/index")
     public String indexPage(Model model) {
         //防止空指针建议使用 Optional<VO>
         SysUser userVo = getCurrentUser();
+        SysPermissionDto dto = new SysPermissionDto();
+        List<SysPermissionVo> menuList = sysPermissionService.selectAllMenuList(dto);
+        model.addAttribute("menuList", menuList);
         model.addAttribute("currentUser",userVo);
         return "index";
     }
 
     @RequestMapping("/main")
     public String mainPage(Model model){
-        Optional<List<SysPermissionVo>> mainMenu = getMainMenuList();
-        model.addAttribute("mainMenu",mainMenu.get());
+        Optional<List<SysPermissionVo>> mainMenuList = getMainMenuList();
+        model.addAttribute("mainMenu",mainMenuList.get());
         return "main";
     }
 

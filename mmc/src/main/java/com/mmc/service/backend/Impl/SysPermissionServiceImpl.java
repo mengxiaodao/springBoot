@@ -38,6 +38,25 @@ public class SysPermissionServiceImpl implements SysPermissionService{
         }
         return allMenuList;
     }
+
+    /**
+     * 查询所有有效权限菜单
+     * @param dto
+     * @return
+     */
+    @Override
+    public List<SysPermissionVo> selectAllMenuList(SysPermissionDto dto) {
+        // 查询所有有效的菜单
+        List<SysPermissionVo> rootMenus = sysPermissionMapper.selectAll(dto);
+        List<SysPermissionVo> allMenuList = new ArrayList<>();
+        for (SysPermissionVo menu : rootMenus) {
+            if (menu.getPid() == 0) {
+                allMenuList.add(findChild(rootMenus, menu));
+            }
+        }
+        return allMenuList;
+    }
+
     /**
      * 递归设置子菜单
      * @param rootMenus

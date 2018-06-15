@@ -51,54 +51,20 @@
             <div class="kit-side-fold"><i class="fa fa-navicon" aria-hidden="true"></i></div>
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="kitNavbar" kit-navbar id="menuList">
-                <li class="layui-nav-item">
-                    <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 基本元素</span></a>
-                    <dl class="layui-nav-child">
-                        <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
-                                <i class="layui-icon">&#xe6c6;</i><span> 表格</span></a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'><i class="fa fa-user" aria-hidden="true"></i><span> 表单</span></a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" data-url="nav.html" data-icon="&#xe628;" data-title="导航栏" kit-target data-id='3'><i class="layui-icon">&#xe628;</i><span> 导航栏</span></a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" data-url="list4.html" data-icon="&#xe614;" data-title="列表四" kit-target data-id='4'><i class="layui-icon">&#xe614;</i><span> 列表四</span></a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'https://www.baidu.com',icon:'&#xe658;',title:'百度一下',id:'5'}"><i class="layui-icon">&#xe658;</i><span> 百度一下</span></a>
-                        </dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 基本元素</span></a>
-                    <dl class="layui-nav-child">
-                        <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
-                                <i class="layui-icon">&#xe6c6;</i><span> 表格</span></a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'><i class="fa fa-user" aria-hidden="true"></i><span> 表单</span></a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" data-url="nav.html" data-icon="&#xe628;" data-title="导航栏" kit-target data-id='3'><i class="layui-icon">&#xe628;</i><span> 导航栏</span></a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" data-url="list4.html" data-icon="&#xe614;" data-title="列表四" kit-target data-id='4'><i class="layui-icon">&#xe614;</i><span> 列表四</span></a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'https://www.baidu.com',icon:'&#xe658;',title:'百度一下',id:'5'}"><i class="layui-icon">&#xe658;</i><span> 百度一下</span></a>
-                        </dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;" data-url="/components/table/table.html" data-name="table" kit-loader><i class="fa fa-plug" aria-hidden="true"></i><span> 表格(page)</span></a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;" data-url="/views/form.html" data-name="form" kit-loader><i class="fa fa-plug" aria-hidden="true"></i><span> 表单(page)</span></a>
-                </li>
+                <#list menuList! as menu>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span>  ${menu.name!}</span></a>
+                        <dl class="layui-nav-child">
+                        <#list menu.children! as subMenu>
+                            <dd>
+                                <a href="javascript:;" data-url="${subMenu.url!}" data-icon="&#xe614;" data-title="${subMenu.name!}" kit-target data-id='4'>
+                                    <i class="layui-icon">&#xe614;</i><span> ${subMenu.name!}</span></a>
+                            </dd>
+                        </#list>
+                        </dl>
+                    </li>
+                </#list>
+
             </ul>
         </div>
     </div>
@@ -116,17 +82,16 @@
 
     </div>
 </div>
+<script src="/static/js/jquery.min.js"></script>
 <script src="/static/plugins/layui/layui.js"></script>
 <script>
-    var message;
     layui.config({
         base: 'build/js/'
     }).use(['layer','jquery','form','table','app', 'message'], function() {
         var app = layui.app,
                 $ = layui.jquery,
                 layer = layui.layer;
-        //将message设置为全局以便子页面调用
-        message = layui.message;
+
         //主入口
         app.set({
             type: 'iframe'
@@ -140,12 +105,9 @@
                 shadeClose: true
             });
         });
-        //行操作
+
+        //初始化操作
         $(function () {
-            //编辑
-            $(document).on("click",".edit",function () {
-                var id = $(this).data("id");
-            });
 
         });
 

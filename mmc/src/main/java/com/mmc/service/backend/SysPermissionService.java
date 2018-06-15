@@ -14,4 +14,11 @@ public interface SysPermissionService {
      * @return
      */
     List<SysPermissionVo> selectMenuList(SysPermissionDto dto);
+
+    /**
+     * 查询所有有效权限菜单
+     * @param dto
+     * @return
+     */
+    List<SysPermissionVo> selectAllMenuList(SysPermissionDto dto);
 }

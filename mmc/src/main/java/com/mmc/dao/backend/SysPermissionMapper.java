@@ -33,6 +33,12 @@ public interface SysPermissionMapper {
      * @return
      */
     List<SysPermissionVo> selectMenuList(SysPermissionDto dto);
+    /**
+     * 查询所有未删除权限菜单
+     * @param dto
+     * @return
+     */
+    List<SysPermissionVo> selectAll(SysPermissionDto dto);
 }
 
 
