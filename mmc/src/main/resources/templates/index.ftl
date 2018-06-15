@@ -50,7 +50,7 @@
         <div class="layui-side-scroll">
             <div class="kit-side-fold"><i class="fa fa-navicon" aria-hidden="true"></i></div>
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree" lay-filter="kitNavbar" kit-navbar>
+            <ul class="layui-nav layui-nav-tree" lay-filter="kitNavbar" kit-navbar id="menuList">
                 <li class="layui-nav-item">
                     <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 基本元素</span></a>
                     <dl class="layui-nav-child">
@@ -104,7 +104,9 @@
     </div>
     <div class="layui-body" id="container">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px;">主体内容加载中,请稍等...</div>
+        <div style="padding: 15px;">
+            加载首页
+        </div>
     </div>
 
     <div class="layui-footer">
@@ -143,7 +145,6 @@
             //编辑
             $(document).on("click",".edit",function () {
                 var id = $(this).data("id");
-
             });
 
         });

@@ -7,7 +7,7 @@
  * LICENSE:MIT
  */
 var tab;
-layui.define(['element', 'nprogress', 'form', 'table', 'loader', 'tab', 'navbar', 'onelevel'], function(exports) {
+layui.define(['layer','element', 'nprogress', 'form', 'table', 'loader', 'tab', 'navbar', 'onelevel'], function(exports) {
     var $ = layui.jquery,
         element = layui.element,
         layer = layui.layer,
@@ -21,9 +21,44 @@ layui.define(['element', 'nprogress', 'form', 'table', 'loader', 'tab', 'navbar'
         _componentPath = 'components/';
     tab = layui.tab
     var app = {
-        hello: function(str) {
-            layer.alert('Hello ' + (str || 'test'));
+        errorMsg: function (text) {
+            top.layer.msg(text, {icon: 2, time: 5000});
         },
+
+        successMsg: function (text) {
+            top.layer.msg(text, {icon: 1, time: 5000});
+        },
+
+        warnMsg: function (text) {
+            top.layer.msg(text, {icon: 0});
+        },
+
+        confirm: function (title, text, callBackFunc) {
+            top.layer.confirm(text, {
+                title: title,
+                resize: false,
+                btn: ['确认', '取消'],
+                btnAlign: 'c',
+                anim: 1,
+                icon: 3
+            }, callBackFunc, function () {
+
+            })
+        },
+        isEmpty: function (value) {
+            if (value == null || value == "" || typeof(value) == 'undefined') {
+                return true;
+            }
+        },
+        isNotEmpty: function (value) {
+            if (value == null || value == "" || typeof(value) == 'undefined') {
+                return false;
+            } else {
+                return true;
+            }
+        },
+
+
         config: {
             type: 'iframe'
         },
