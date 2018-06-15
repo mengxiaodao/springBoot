@@ -240,5 +240,29 @@
         en_name = #{enName} 
     where id = #{id }  
   </update>
-	
+
+  <!--查询用户左侧权限列表-->
+  <select id="selectMenuList" resultMap="BaseResultMap" parameterType="com.mmc.model.dto.SysPermissionDto">
+    SELECT DISTINCT
+    sp.*
+    FROM
+    sys_permission sp,
+    sys_user su,
+    sys_user_role sur,
+    sys_role_permission srp
+    WHERE
+    su.id = #{userId}
+    AND sp.id = srp.permission_id
+    AND sur.role_id = srp.role_id
+    AND sur.user_id = su.id
+    AND sp.is_visible = 1
+    and sp.is_deleted = 0
+    and srp.is_deleted = 0
+    and su.is_deleted = 0
+    and sur.is_deleted = 0
+    and type in (1,2)
+    ORDER BY
+    sp.sort DESC
+  </select>
+
 </mapper>

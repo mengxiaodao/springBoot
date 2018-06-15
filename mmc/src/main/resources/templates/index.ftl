@@ -114,16 +114,12 @@
 
     </div>
 </div>
-<script type="text/javascript">
-    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-    document.write(unescape("%3Cspan id='cnzz_stat_icon_1264021086'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1264021086%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-</script>
 <script src="/static/plugins/layui/layui.js"></script>
 <script>
     var message;
     layui.config({
         base: 'build/js/'
-    }).use(['app', 'message'], function() {
+    }).use(['layer','jquery','form','table','app', 'message'], function() {
         var app = layui.app,
                 $ = layui.jquery,
                 layer = layui.layer;
@@ -142,6 +138,16 @@
                 shadeClose: true
             });
         });
+        //行操作
+        $(function () {
+            //编辑
+            $(document).on("click",".edit",function () {
+                var id = $(this).data("id");
+
+            });
+
+        });
+
     });
 </script>
 </body>
