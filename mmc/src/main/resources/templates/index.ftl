@@ -17,94 +17,133 @@
     <!-- 网页作者 -->
     <meta name="author" content="CIC"/>
     <link rel="icon" href="#">
-    <link rel="stylesheet" href="/static/layui/css/layui.css" media="all" />
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
-    <link rel="stylesheet" href="/static/css/main.css" media="all" />
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/plugins/layui/css/layui.css" media="all">
+    <#--<link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.min.css" media="all">-->
+    <link rel="stylesheet" href="/static/build/css/app.css" media="all">
 </head>
-<body class="main_body">
-<div class="layui-layout layui-layout-admin">
-    <!-- 顶部 -->
-    <div class="layui-header header">
-        <div class="layui-main">
-            <a href="#" class="logo" >layUI运营后台</a>
-            <!-- 显示/隐藏菜单 -->
-            <a href="javascript:" class="iconfont hideMenu icon-menu1"></a>
 
-            <!-- 顶部右侧菜单 -->
-            <ul class="layui-nav top_menu">
-                <li class="layui-nav-item showNotice" id="showNotice" pc>
-                    <a href="javascript:"><i class="iconfont icon-gonggao"></i><cite>系统公告</cite></a>
-                </li>
-            <#--<li class="layui-nav-item lockcms" pc>-->
-            <#--<a href="javascript:"><i class="iconfont icon-lock1"></i><cite>锁屏</cite></a>-->
-            <#--</li>-->
-                <li class="layui-nav-item" pc>
-                    <a href="javascript:">
-                        <img src="<#if currentUser.icon?? && currentUser.icon!=''>${currentUser.icon}<#else>/static/images/face.jpg</#if>" class="layui-circle" width="35" height="35">
-                        <cite><#if currentUser.loginName?? && currentUser.loginName!=''>${currentUser.loginName}<#else>${currentUser.nameZh}</#if></cite>
-                    </a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:" data-url="/sysUser/userInfo"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite>个人资料</cite></a></dd>
-                        <dd><a href="javascript:" data-url="/sysUser/changePassword"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>修改密码</cite></a></dd>
-                        <dd><a href="javascript:" class="changeSkin"><i class="iconfont icon-huanfu"></i><cite>修改皮肤</cite></a></dd>
-                        <dd><a href="/login/logout" class="signOut"><i class="iconfont icon-loginout"></i><cite>退出</cite></a></dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
+<body>
+<div class="layui-layout layui-layout-admin kit-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">KIT ADMIN</div>
+        <div class="layui-logo kit-logo-mobile">K</div>
+        <ul class="layui-nav layui-layout-left kit-nav" kit-one-level>
+            <li class="layui-nav-item"><a href="javascript:;">控制台</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">商品管理</a></li>
+        </ul>
+        <ul class="layui-nav layui-layout-right kit-nav">
+            <li class="layui-nav-item"><a href="javascript:;" id="pay"><i class="fa fa-gratipay" aria-hidden="true"></i> 捐赠我</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://m.zhengjinfan.cn/images/0.jpg" class="layui-nav-img"> Van
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">基本资料</a></dd>
+                    <dd><a href="javascript:;">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="javascript:;"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a></li>
+        </ul>
     </div>
 
-    <!-- 左侧导航 -->
-    <div class="layui-side layui-bg-black">
-        <div class="user-photo">
-            <a class="img" title="我的图像" ><img src="<#if currentUser.icon?? && currentUser.icon!=''>${currentUser.icon}<#else>/static/images/face.jpg</#if>"></a>
-            <p>你好!<span class="userName"><#if currentUser.loginName?? && currentUser.loginName!=''>${currentUser.loginName}<#else>${currentUser.nameZh}</#if></span>,欢迎登录</p>
-        </div>
-        <div class="navBar layui-side-scroll"></div>
-    </div>
-
-    <!-- 右侧内容 -->
-    <div class="layui-body layui-form">
-        <div class="layui-tab marg0" lay-filter="bodyTab" id="top_tabs_box">
-            <ul class="layui-tab-title top_tab" id="top_tabs">
-                <li class="layui-this" lay-id=""><i class="iconfont icon-computer"></i> <cite>后台首页</cite></li>
-            </ul>
-            <ul class="layui-nav closeBox">
+    <div class="layui-side layui-bg-black kit-side">
+        <div class="layui-side-scroll">
+            <div class="kit-side-fold"><i class="fa fa-navicon" aria-hidden="true"></i></div>
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="kitNavbar" kit-navbar>
                 <li class="layui-nav-item">
-                    <a href="javascript:"><i class="iconfont icon-caozuo"></i>页面操作</a>
+                    <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 基本元素</span></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:" class="refresh refreshThis"><i class="layui-icon">&#x1002;</i>刷新当前</a></dd>
-                        <dd><a href="javascript:" class="closePageOther"><i class="iconfont icon-prohibit"></i>关闭其他</a></dd>
-                        <dd><a href="javascript:" class="closePageAll"><i class="iconfont icon-guanbi"></i>关闭全部</a></dd>
+                        <dd>
+                            <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
+                                <i class="layui-icon">&#xe6c6;</i><span> 表格</span></a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'><i class="fa fa-user" aria-hidden="true"></i><span> 表单</span></a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;" data-url="nav.html" data-icon="&#xe628;" data-title="导航栏" kit-target data-id='3'><i class="layui-icon">&#xe628;</i><span> 导航栏</span></a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;" data-url="list4.html" data-icon="&#xe614;" data-title="列表四" kit-target data-id='4'><i class="layui-icon">&#xe614;</i><span> 列表四</span></a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;" kit-target data-options="{url:'https://www.baidu.com',icon:'&#xe658;',title:'百度一下',id:'5'}"><i class="layui-icon">&#xe658;</i><span> 百度一下</span></a>
+                        </dd>
                     </dl>
                 </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 基本元素</span></a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
+                                <i class="layui-icon">&#xe6c6;</i><span> 表格</span></a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'><i class="fa fa-user" aria-hidden="true"></i><span> 表单</span></a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;" data-url="nav.html" data-icon="&#xe628;" data-title="导航栏" kit-target data-id='3'><i class="layui-icon">&#xe628;</i><span> 导航栏</span></a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;" data-url="list4.html" data-icon="&#xe614;" data-title="列表四" kit-target data-id='4'><i class="layui-icon">&#xe614;</i><span> 列表四</span></a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;" kit-target data-options="{url:'https://www.baidu.com',icon:'&#xe658;',title:'百度一下',id:'5'}"><i class="layui-icon">&#xe658;</i><span> 百度一下</span></a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;" data-url="/components/table/table.html" data-name="table" kit-loader><i class="fa fa-plug" aria-hidden="true"></i><span> 表格(page)</span></a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;" data-url="/views/form.html" data-name="form" kit-loader><i class="fa fa-plug" aria-hidden="true"></i><span> 表单(page)</span></a>
+                </li>
             </ul>
-
-            <div class="layui-tab-content clildFrame">
-                <div class="layui-tab-item layui-show">
-                    <iframe src="/main"></iframe>
-                </div>
-            </div>
         </div>
     </div>
-
-    <!-- 底部 -->
-    <div class="layui-footer footer">
-        <p>Copyright © 2018<a href="#" target="_blank"> </a></p>
+    <div class="layui-body" id="container">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">主体内容加载中,请稍等...</div>
     </div>
 
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        2017 &copy;
+        <a href="http://kit.zhengjinfan.cn/">kit.zhengjinfan.cn/</a> MIT license
+
+    </div>
 </div>
-
-<!-- 移动导航 -->
-<div class="site-tree-mobile layui-hide"><i class="layui-icon">&#xe602;</i></div>
-<div class="site-mobile-shade"></div>
-
-<script>
-    var baseUrl = "${basePath}";
+<script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_1264021086'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1264021086%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
 </script>
-<script type="text/javascript" src="/static/layui/layui.js"></script>
-<script type="text/javascript" src="/static/js/leftNav.js?v=2.0"></script>
-<script type="text/javascript" src="/static/js/index.js?t=3.0"></script>
+<script src="/static/plugins/layui/layui.js"></script>
+<script>
+    var message;
+    layui.config({
+        base: 'build/js/'
+    }).use(['app', 'message'], function() {
+        var app = layui.app,
+                $ = layui.jquery,
+                layer = layui.layer;
+        //将message设置为全局以便子页面调用
+        message = layui.message;
+        //主入口
+        app.set({
+            type: 'iframe'
+        }).init();
+        $('#pay').on('click', function() {
+            layer.open({
+                title: false,
+                type: 1,
+                content: '<img src="/static/build/images/pay.png" />',
+                area: ['500px', '250px'],
+                shadeClose: true
+            });
+        });
+    });
+</script>
 </body>
+
 </html>

@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
 
-    <link rel="stylesheet" href="/static/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/static/plugins/layui/css/layui.css" media="all" />
     <link rel="stylesheet" href="/static/css/login.css" media="all" />
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <style type="text/css">
@@ -56,8 +56,8 @@
 <div class="loginTip">
     <span>用户名:admin &nbsp;&nbsp;&nbsp;密码:123456</span>
 </div>
-<script type="text/javascript" src="/static/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/plugins/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/jquery.bcat.bgswitcher.js"></script>
 <script>
     layui.use(['layer', 'form'], function() {
